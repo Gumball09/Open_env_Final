@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {
+      "id": "8b7c5a99c9b7",
+      "timestamp": "2026-04-25T10:20:49.380537+00:00",
+      "category": "habit",
+      "source": "habit_agent",
+      "content": "Habit: Test (daily at 08:00)"
+    }
+  ],
+  "user_profile": {}
+}

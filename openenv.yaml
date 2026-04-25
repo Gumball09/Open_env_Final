@@ -1,0 +1,26 @@
+name: butler
+version: 1.0.0
+description: >
+  A multi-agent personal task orchestration RL environment.
+  An LLM agent learns to prioritize personal tasks over professional
+  ones, route ToDo entries to specialized sub-agents, and execute
+  real-world actions via Google APIs. Built for OpenEnv hackathon.
+env_type: mcp
+entry: app.py
+tools:
+  - route_to_agent
+  - ask_clarification
+  - schedule_event
+  - send_email
+  - draft_reply
+  - add_to_kb
+  - set_reminder
+reward: rubric
+observation_space: text
+action_space: discrete_with_params
+tags:
+  - personal-assistant
+  - task-management
+  - multi-agent
+  - priority-scheduling
+  - productivity
