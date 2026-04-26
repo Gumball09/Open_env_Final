@@ -9,9 +9,17 @@ Butler learns to prioritize personal tasks (health, family, habits) over profess
 
 ---
 
-## 🎯 Core Innovation: Priority-Based Task Ordering
+## 🚨 The Problem Statement
+Highly driven professionals often neglect vital aspects of their lives—health, family, and personal habits—due to overwhelming professional commitments like meetings and emails. We face real conflicts every day: missing dinner due to last-minute work, or navigating the nuance of replying to tough emails. We needed an environment that provides a realistic simulation of handling personal tasks and conflicts, managing them as intelligent delegations.
 
-Butler's key design principle: **personal wellbeing comes first**.
+## 🎯 The Environment & Core Innovation
+We built **"Butler"**, a centralized to-do environment acting as a single CMS continuously monitored by AI agents. Butler learns to handle tasks and route them through keyword mapping:
+- **Meeting Agent:** Detects "Meeting", schedules via Google Calendar, and sends reminder emails via Gmail. Tracks replies and extracts future action items from meeting summaries.
+- **Email Agent:** Detects important emails, auto-sorts them in the CMS, and uses an Auto-Pilot daemon to draft and send contextualized AI replies based on a Knowledge Base.
+- **Knowledge Base Agent:** Maintains a Q&A session based on saved user context, allowing users to ask questions directly about their data.
+- **Habit Agent:** Triggered by "Remind", it sets up daily alarms for habits like going to the gym or drinking water.
+
+Butler enforces a strict priority structure: **personal wellbeing comes first**.
 
 | Tier | Type | Priority | Examples |
 |------|------|----------|----------|
@@ -19,7 +27,7 @@ Butler's key design principle: **personal wellbeing comes first**.
 | 🔵 TIER 2 | Professional | 5 | Meetings, emails, deadlines, deliverables |
 | ⚪ Unclassified | Other | 0 | Groceries, entertainment, general tasks |
 
-When the agent handles a TIER 2 task while any TIER 1 task is pending, it receives a **-0.3 reward penalty**. This trains the model to always prioritize personal wellbeing.
+When the agent handles a TIER 2 task while any TIER 1 task is pending, it receives a **-0.3 reward penalty**. This trains the model to always prioritize personal wellbeing over professional deliverables.
 
 ---
 
@@ -206,14 +214,30 @@ The reward function has **5 deterministic components** (no LLM-as-judge in the r
 
 ---
 
-## 📊 Training Results
+## 📊 Results: What Changed After Training?
 
-After GRPO training, the agent learns to:
-- ✅ Always handle personal tasks before professional tasks
-- ✅ Route tasks to the correct sub-agent
+We trained Butler using Hugging Face's `Qwen2.5-7B-Instruct` model and `trl`'s GRPO. Before training, the baseline model struggled to order tasks correctly and often hallucinated parameters. After training, the agent learned to:
+- ✅ Always handle personal tasks (Tier 1) before professional tasks (Tier 2)
+- ✅ Route tasks to the correct sub-agent accurately
 - ✅ Ask for missing information before acting
 - ✅ Abstain from acting on non-actionable tasks
-- ✅ Use the correct tool with complete parameters
+- ✅ Use the correct APIs with complete parameters
+
+### Project Reward vs Step (500 Steps)
+![Project reward vs Step (500 Steps)](./assets/reward_500.png)
+
+### Project Reward Vs Step (50 Steps)
+![Project reward Vs Step (50 Steps)](./assets/reward_50.png)
+
+### Baseline vs Trained Butler (50 Eval episodes)
+![Baseline vs Trained Butler](./assets/baseline_vs_trained.png)
+
+---
+
+## 🌟 Why Does It Matter?
+- **For Users:** Butler automates the mundane (scheduling, email replies) while actively enforcing healthy boundaries, ensuring you don't miss personal habits for a work email.
+- **For AI Research:** It demonstrates how to build a complex, multi-agent OpenEnv utilizing GRPO to prioritize abstract values (wellbeing) rather than indiscriminate task completion.
+- **For Product Teams:** It provides a blueprint for integrating external APIs (Calendar, Gmail), centralized LLM routing (HF + Cursor fallback), and local knowledge bases into a scalable application.
 
 ---
 
