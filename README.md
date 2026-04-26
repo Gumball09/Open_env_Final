@@ -274,10 +274,4 @@ The implications of Butler extend far beyond a hackathon project:
 
 ---
 
-## 📝 License
-
-MIT License
-
----
-
 **Built for the OpenEnv Hackathon 🚀**
