@@ -1,6 +1,8 @@
 # 🎩 Butler — AI Personal Task Orchestrator
 
 **A multi-agent personal task orchestration system built as an OpenEnv reinforcement learning environment.**
+<img width="1841" height="957" alt="image" src="https://github.com/user-attachments/assets/5903c911-52aa-41ee-91c2-a0bddc41fe34" />
+
 
 Butler learns to prioritize personal tasks (health, family, habits) over professional tasks (meetings, emails, deadlines) through RL training with GRPO.
 
@@ -119,15 +121,17 @@ After GRPO training, the behavioral shift was profound:
 
 **Project Reward vs Step (500 Steps)**  
 Over 500 steps, we observe the model escaping local optima (where it simply tried to do the easiest task first) and converging on a policy that maximizes the 5-component rubric.  
-![Project reward vs Step (500 Steps)](./assets/reward_500.png)
+<img width="846" height="470" alt="image" src="https://github.com/user-attachments/assets/1ca2cc5a-a86b-46b7-92ac-f314c2674d76" />
+
 
 **Project Reward Vs Step (50 Steps)**  
 In the first 50 steps, the model experiences rapid policy adaptation as it hits the `-0.3` priority penalty repeatedly, causing a sharp initial correction in behavior.  
-![Project reward Vs Step (50 Steps)](./assets/reward_50.png)
+<img width="990" height="490" alt="image" src="https://github.com/user-attachments/assets/d97c98e7-d6cf-490d-b8be-1a1b5a45303d" />
+
 
 **Baseline vs Trained Butler (50 Eval episodes)**  
 This evaluation clearly demonstrates the trained model successfully completing full MDP trajectories (clearing the queue) whereas the baseline consistently fails due to tool hallucinations and priority violations.  
-![Baseline vs Trained Butler](./assets/baseline_vs_trained.png)
+<img width="841" height="723" alt="image" src="https://github.com/user-attachments/assets/d7eb14be-cc5c-47b2-8663-d304f24d5f9e" />
 
 ---
 
@@ -237,6 +241,8 @@ python inference.py --model your-username/butler-grpo --compare
 ### 4. Train with GRPO
 
 Open `training/butler_grpo_colab.ipynb` in Google Colab and follow the cells.
+<img width="845" height="507" alt="image" src="https://github.com/user-attachments/assets/2554dc7c-e514-4443-8290-6817aa50b3f0" />
+
 
 ---
 
